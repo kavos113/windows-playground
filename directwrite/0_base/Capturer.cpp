@@ -104,7 +104,7 @@ void Capturer::Save(int id)
         return;
     }
 
-    std::wstring file_path = std::format(L"capture{}.png", id);
+    std::wstring file_path = std::format(L"images/capture{}.png", id);
     hr = SaveToWICFile(
         *scratchImage.GetImage(0, 0, 0),
         DirectX::WIC_FLAGS_NONE,

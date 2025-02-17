@@ -8,7 +8,30 @@ void DWrite::Change()
 
     m_actions.push_back([this]()
     {
-        std::cout << "Change 1" << std::endl;
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+    });
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
+    });
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+    });
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_JUSTIFIED);
+    });
+
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetReadingDirection(DWRITE_READING_DIRECTION_RIGHT_TO_LEFT);
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+    });
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetReadingDirection(DWRITE_READING_DIRECTION_RIGHT_TO_LEFT);
+        m_textLayout->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
     });
 }
 

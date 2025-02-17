@@ -8,5 +8,6 @@ add_subdirectory(directwrite/textformat_flow-direction)
 add_subdirectory(directwrite/textformat_line-spacing)
 add_subdirectory(directwrite/textformat_paragraph-alignment)
 add_subdirectory(directwrite/textformat_text-alignment)
+add_subdirectory(directwrite/textformat_trimming)
 
 add_subdirectory(winrt/capture)

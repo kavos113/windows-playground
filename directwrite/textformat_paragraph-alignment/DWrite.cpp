@@ -18,6 +18,17 @@ void DWrite::Change()
     {
         m_textLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
     });
+
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetFlowDirection(DWRITE_FLOW_DIRECTION_BOTTOM_TO_TOP);
+        m_textLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+    });
+    m_actions.push_back([this]()
+    {
+        m_textLayout->SetFlowDirection(DWRITE_FLOW_DIRECTION_BOTTOM_TO_TOP);
+        m_textLayout->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
+    });
 }
 
 int DWrite::NextAction()

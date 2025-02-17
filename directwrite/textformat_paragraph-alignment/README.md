@@ -24,3 +24,9 @@ CENTER
 
 FAR
 ![](images/capture2.png)
+
+FlowDirection: BottomToTop, ParagraphAlignment: NEAR
+![](images/capture3.png)
+
+FlowDirection: BottomToTop, ParagraphAlignment: FAR
+![](images/capture4.png)

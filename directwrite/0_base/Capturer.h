@@ -2,6 +2,7 @@
 #define CAPTURE_H
 
 #include <d3d11.h>
+#include <DirectXTex.h>
 #include <winrt/windows.graphics.capture.h>
 #include <winrt/windows.graphics.directx.direct3d11.h>
 #include <wrl/client.h>
@@ -18,6 +19,8 @@ public:
 
     void StartCapture();
     void Close();
+
+    void Save(int id);
 private:
     void OnFrameArrived(
         const winrt::Windows::Graphics::Capture::Direct3D11CaptureFramePool& sender,
@@ -34,7 +37,10 @@ private:
     Microsoft::WRL::ComPtr<ID3D11Device> m_d3dDevice;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_d3dContext;
 
+    winrt::com_ptr<ID3D11Texture2D> m_image;
+
     bool m_isSaved = false;
+    bool m_isSaving = false;
 };
 
 

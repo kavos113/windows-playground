@@ -24,8 +24,22 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     }
 
     std::thread capture_thread([&app]() {
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
         PostMessage(app.Window(), WM_CUSTOM_CAPTURE, 0, 0);
+        while (true)
+        {
+            int id = 0;
+            PostMessage(app.Window(), WM_CUSTOM_ACTION, 0, reinterpret_cast<LPARAM>(&id));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            if (id == -1)
+            {
+                break;
+            }
+
+            PostMessage(app.Window(), WM_CUSTOM_SAVE, id, 0);
+        }
+
+        PostMessage(app.Window(), WM_CLOSE, 0, 0);
     });
 
     MSG msg = {};

@@ -5,6 +5,24 @@
 void DWrite::Change()
 {
     // change this function
+
+    m_actions.push_back([this]()
+    {
+        std::cout << "Change 1" << std::endl;
+    });
+}
+
+int DWrite::NextAction()
+{
+    if (m_currentAction >= m_actions.size())
+    {
+        return -1;
+    }
+
+    m_actions[m_currentAction]();
+    m_currentAction++;
+
+    return m_currentAction - 1;
 }
 
 void DWrite::Init(const D2D1_RECT_F rect, const Microsoft::WRL::ComPtr<ID2D1DeviceContext7> &d2dContext)

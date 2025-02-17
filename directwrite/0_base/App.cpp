@@ -118,6 +118,18 @@ LRESULT App::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
             m_capture->StartCapture();
             return 0;
 
+        case WM_CUSTOM_ACTION:
+        {
+            int* id = reinterpret_cast<int *>(lParam);
+            *id = m_dwrite.NextAction();
+            InvalidateRect(m_hwnd, nullptr, FALSE);
+        }
+            return 0;
+
+        case WM_CUSTOM_SAVE:
+            m_capture->Save(static_cast<int>(wParam));
+            return 0;
+
         default:
             return DefWindowProc(m_hwnd, uMsg, wParam, lParam);
     }

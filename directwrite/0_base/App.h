@@ -14,7 +14,9 @@
 #include "DWrite.h"
 #include "Capturer.h"
 
-#define WM_CUSTOM_CAPTURE WM_USER + 1
+#define WM_CUSTOM_CAPTURE (WM_USER + 1)
+#define WM_CUSTOM_ACTION (WM_USER + 2)
+#define WM_CUSTOM_SAVE (WM_USER + 3)
 
 class App {
 public:

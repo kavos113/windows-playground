@@ -74,10 +74,14 @@ void Capturer::OnFrameArrived(
     auto frame = sender.TryGetNextFrame();
     auto size = frame.ContentSize();
 
+    if (m_isSaving)
+    {
+        return;
+    }
+
     winrt::Windows::Foundation::IInspectable object = frame.Surface();
     auto access = object.as<Windows::Graphics::DirectX::Direct3D11::IDirect3DDxgiInterfaceAccess>();
-    winrt::com_ptr<ID3D11Texture2D> texture;
-    winrt::hresult hr = access->GetInterface(winrt::guid_of<ID3D11Texture2D>(), texture.put_void());
+    winrt::hresult hr = access->GetInterface(winrt::guid_of<ID3D11Texture2D>(), m_image.put_void());
     if (FAILED(hr))
     {
         std::cerr << "Failed to get texture" << std::endl;
@@ -85,25 +89,27 @@ void Capturer::OnFrameArrived(
     }
 
     m_lastSize = size;
+}
 
-    if (m_isSaved)
-    {
-        return;
-    }
+void Capturer::Save(int id)
+{
+    m_isSaving = true;
 
-    DirectX::ScratchImage image;
-    hr = CaptureTexture(m_d3dDevice.Get(), m_d3dContext.Get(), texture.get(), image);
+    DirectX::ScratchImage scratchImage;
+
+    HRESULT hr = CaptureTexture(m_d3dDevice.Get(), m_d3dContext.Get(), m_image.get(), scratchImage);
     if (FAILED(hr))
     {
         std::cerr << "Failed to capture texture" << std::endl;
         return;
     }
 
+    std::wstring file_path = std::format(L"capture{}.png", id);
     hr = SaveToWICFile(
-        *image.GetImage(0, 0, 0),
+        *scratchImage.GetImage(0, 0, 0),
         DirectX::WIC_FLAGS_NONE,
         GetWICCodec(DirectX::WIC_CODEC_PNG),
-        L"capture.png"
+        file_path.c_str()
     );
     if (FAILED(hr))
     {
@@ -111,5 +117,5 @@ void Capturer::OnFrameArrived(
         return;
     }
 
-    m_isSaved = true;
+    m_isSaving = false;
 }

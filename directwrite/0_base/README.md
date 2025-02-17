@@ -2,4 +2,4 @@
 
 default project template
 
-[](./capture.png)
+![](../../images/dwrite/0_base.png)

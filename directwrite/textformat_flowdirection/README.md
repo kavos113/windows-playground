@@ -28,25 +28,25 @@ typedef enum DWRITE_READING_DIRECTION {
 
 ## Result
 Flow = TopToBottom, Reading = LeftToRight
-![](textformat_flowdirection/topleft.png)
+![](images/topleft.png)
 
 Flow = TopToBottom, Reading = RightToLeft
-![](topright.png)
+![](images/topright.png)
 
 Flow = BottomToTop, Reading = LeftToRight
-![](textformat_flowdirection/bottomleft.png)
+![](images/bottomleft.png)
 
 Flow = BottomToTop, Reading = RightToLeft
-![](bottomright.png)
+![](images/bottomright.png)
 
 Flow = LeftToRight, Reading = TopToBottom
-![](lefttop.png)
+![](images/lefttop.png)
 
 Flow = LeftToRight, Reading = BottomToTop
-![](leftbottom.png)
+![](images/leftbottom.png)
 
 Flow = RightToLeft, Reading = TopToBottom
-![](righttop.png)
+![](images/righttop.png)
 
 Flow = RightToLeft, Reading = BottomToTop
-![](rightbottom.png)
+![](images/rightbottom.png)

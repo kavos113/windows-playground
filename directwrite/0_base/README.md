@@ -2,4 +2,4 @@
 
 default project template
 
-![](0_base.png)
+![](images/0_base.png)
